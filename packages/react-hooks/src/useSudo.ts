@@ -12,17 +12,26 @@ import { useApi } from './useApi';
 import { useCall } from './useCall';
 
 const transformSudo = {
-  transform: (key: AccountId) => key.toString()
+  // eslint-disable-next-line no-trailing-spaces
+  transform: (key: AccountId) => { 
+    console.log(key.toString());
+
+    return key.toString();
+  }
 };
 
 function useSudoImpl (): UseSudo {
+  debugger;
   const { api } = useApi();
   const { allAccounts, hasAccounts } = useAccounts();
   const sudoKey = useCall<string>(hasAccounts && api.query.sudo?.key, undefined, transformSudo);
+
+  console.log('sudo', sudoKey);
   const [hasSudoKey, setHasSudoKey] = useState(false);
 
   useEffect((): void => {
-    setHasSudoKey(!!sudoKey && !!allAccounts && allAccounts.some((key) => key === sudoKey));
+    console.log('结果', !!sudoKey && !!allAccounts && allAccounts.some((key) => key === sudoKey));
+    setHasSudoKey(!!sudoKey && !!allAccounts && allAccounts.some((key) => key.toLocaleLowerCase() === sudoKey));
   }, [allAccounts, sudoKey]);
 
   return { allAccounts, hasSudoKey, sudoKey };

@@ -139,6 +139,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'bitcountry-node': bitcountry,
   'bitcountry-parachain': bitcountryParachain,
   canvas,
+  ccm: moonbeam,
   'centrifuge-chain': centrifugeChain,
   chainx,
   'chainx-parachain': chainx,

@@ -48,9 +48,9 @@ function SettingsApp ({ basePath, onStatusChange }: Props): React.ReactElement<P
   const hidden = useMemo(
     () => (isApiConnected && isApiReady)
       ? api.runtimeMetadata.version <= 13
-        ? []
+        ? ['developer']
         : ['developer']
-      : ['metadata', 'i18n'],
+      : ['metadata', 'i18n', 'developer'],
     [api, isApiConnected, isApiReady]
   );
 
@@ -59,7 +59,7 @@ function SettingsApp ({ basePath, onStatusChange }: Props): React.ReactElement<P
       <HelpOverlay md={md as string} />
       <Tabs
         basePath={basePath}
-        hidden={hidden}
+        hidden={[]}
         items={items}
       />
       <Switch>

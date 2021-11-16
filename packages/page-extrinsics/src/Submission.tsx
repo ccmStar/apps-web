@@ -38,7 +38,7 @@ function Selection ({ className }: Props): React.ReactElement<Props> {
       if (!extrinsic) {
         return ['0x', '0x'];
       }
-
+    console.log(extrinsic.method)
       const u8a = extrinsic.method.toU8a();
 
       // don't use the built-in hash, we only want to convert once
