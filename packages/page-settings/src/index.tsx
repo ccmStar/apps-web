@@ -7,7 +7,6 @@ import React, { useMemo } from 'react';
 import { Route, Switch } from 'react-router';
 
 import { HelpOverlay, Tabs } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
 
 import md from './md/basics.md';
 import Developer from './Developer';
@@ -21,7 +20,6 @@ export { useCounter };
 
 function SettingsApp ({ basePath, onStatusChange }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const { api, isApiConnected, isApiReady } = useApi();
   const numExtensions = useCounter();
 
   const items = useMemo(() => [
@@ -45,14 +43,14 @@ function SettingsApp ({ basePath, onStatusChange }: Props): React.ReactElement<P
     }
   ], [numExtensions, t]);
 
-  const hidden = useMemo(
-    () => (isApiConnected && isApiReady)
-      ? api.runtimeMetadata.version <= 13
-        ? ['developer']
-        : ['developer']
-      : ['metadata', 'i18n', 'developer'],
-    [api, isApiConnected, isApiReady]
-  );
+  // const hidden = useMemo(
+  //   () => (isApiConnected && isApiReady)
+  //     ? api.runtimeMetadata.version <= 13
+  //       ? ['developer']
+  //       : ['developer']
+  //     : ['metadata', 'i18n', 'developer'],
+  //   [api, isApiConnected, isApiReady]
+  // );
 
   return (
     <main className='settings--App'>

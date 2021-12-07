@@ -21,7 +21,6 @@ const transformSudo = {
 };
 
 function useSudoImpl (): UseSudo {
-  debugger;
   const { api } = useApi();
   const { allAccounts, hasAccounts } = useAccounts();
   const sudoKey = useCall<string>(hasAccounts && api.query.sudo?.key, undefined, transformSudo);
