@@ -31,7 +31,7 @@ function useSudoImpl (): UseSudo {
 
   useEffect((): void => {
     console.log('结果', !!sudoKey && !!allAccounts && allAccounts.some((key) => key === sudoKey));
-    setHasSudoKey(!!sudoKey && !!allAccounts && allAccounts.some((key) => key.toLocaleLowerCase() === sudoKey));
+    setHasSudoKey(!!sudoKey && !!allAccounts && allAccounts.some((key) => key.toLocaleLowerCase() === sudoKey.toLocaleLowerCase()));
   }, [allAccounts, sudoKey]);
 
   return { allAccounts, hasSudoKey, sudoKey };
